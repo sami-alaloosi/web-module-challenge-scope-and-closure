@@ -42,6 +42,7 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+A closure gives you access to an outer function’s scope from an inner function.
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +64,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+Line 53 when the function accessed the name variable from outside the function's scope.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+The name is always the same because it been defined outside the function' scope (the function only uses the name and doesnt manipulate it ).The newRoll number always change when we recall the functions because it been created inside the function.
+
 c. What is the lexical scope of `newRoll`? 
+
+newRoll will not be accessible outside the personalDice function.
 
 ### Task 2c - Exit Ticket
 
@@ -85,7 +94,9 @@ See if you can complete one or more of the following challenges:
   var a = b = 3;
 })();
 console.log("a defined? " + (typeof a !== 'undefined'));
+a in undefined; you can only use a inside the function scope.
 console.log("b defined? " + (typeof b !== 'undefined'));
+b = 3; you can use b anywhere in your code (b is defined in the global scope)
 ```
 
 2. Write a function that would allow you to do this using a closure. (This is another interview question we've seen before - when you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions)).
@@ -95,9 +106,21 @@ var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
 ```
+//my answer
+
+function createBase(n){
+  return function(number){
+    return n + number;
+  }
+}
+var addSix = createBase(6);
+console.log(addSix(10)); // returns 16
+console.log(addSix(21)); // returns 27
+
 
 3. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
 
+In Object-oriented programming, it is really hard to maintain objects while increasing the levels of inheritance. It also breaks the principle of encapsulation and not fully modular even. In functional programming, it requires always a new object to execute functions and it takes a lot of memory for executing the applications.
 ## Resources
 
 📚 [Scope and Closures Guide](https://css-tricks.com/javascript-scope-closures/)

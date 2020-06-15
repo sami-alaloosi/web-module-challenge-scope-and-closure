@@ -27,11 +27,11 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * counter1 is an example of a closure, the function counter it access count from outsaide the function's scope; counter2 is an example of a function that doesnt access any data from outside the function's scope.
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * counter1 uses closure because it accesses count from outer function's scope.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * I used counter1 example most of the time (using closure in for loop for example) unless I dont want the data to be access outside the function (for privacy) in that time I use counter2 example.
 */
 
 // counter1 code
@@ -56,11 +56,20 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(num){
+  let randomNumber = [];
+  for(let i = 0; i < num; i++){
+   randomNumber.push(Math.floor(Math.random()*3));
+  }
 
-    /*Code Here*/
+   return randomNumber;
 
 }
+
+console.log(inning(10)); //this is a test.
+
+
+
 
 /* Task 3: finalScore()
 
@@ -76,11 +85,25 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore (inning, num) {
+  let score = {};
+  let homeScore = inning(num);
+  let awayScore =  inning(num);
 
-  /*Code Here*/
+   const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
+   score.Home = homeScore.reduce(reducer);
+   score.Away = awayScore.reduce(reducer);
+
+   return score;
 }
+
+
+ console.log(finalScore(inning, 9)); //this is a test.
+
+
+
+
 
 /* Task 4: 
 
@@ -103,8 +126,38 @@ and returns the score at each pont in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(inning, num) {
+  let score = {};
+  let homeScore = inning(num);
+  let awayScore =  inning(num);
+  let sumHome = 0;
+  let sumAway = 0;
+  for (let i = 0; i < homeScore.length; i++){
+    if(i === 0){
+      console.log(`1st inning: ${sumHome += homeScore[i]} - ${sumAway += awayScore[i]}`);
+    } else if (i === 1) {
+      console.log(`2nd inning: ${sumHome += homeScore[i]} - ${sumAway += awayScore[i]}`);
+    } else if (i === 2) {
+      console.log(`3rd inning: ${sumHome += homeScore[i]} - ${sumAway += awayScore[i]}`);
+    } else  {
+      console.log(`${i+1}th inning: ${sumHome += homeScore[i]} - ${sumAway += awayScore[i]}`);
+    }
+  }
+
+   const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+   score.Home = homeScore.reduce(reducer);
+   score.Away = awayScore.reduce(reducer);
+   
+   let message = `Final Score: ${score.Home} - ${score.Away}`
+   
+   return message;
 }
+
+
+console.log(scoreboard(inning, 9)); //this is a test.
+
+
+
 
 
